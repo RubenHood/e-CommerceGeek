@@ -36,9 +36,9 @@ class Product
     private $description;
 
     /**
-     * @var int
+     * @var float
      *
-     * @ORM\Column(name="price", type="integer")
+     * @ORM\Column(name="price", type="float")
      */
     private $price;
 
@@ -118,7 +118,7 @@ class Product
     /**
      * Set price
      *
-     * @param integer $price
+     * @param float $price
      *
      * @return Product
      */
@@ -132,7 +132,7 @@ class Product
     /**
      * Get price
      *
-     * @return int
+     * @return float
      */
     public function getPrice()
     {
