@@ -1,13 +1,78 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!--	Color de la barra principal Chrome para mobil-->
+    <meta name="theme-color" content="#00acc1">
+
+    <!-- Favicons-->
+    <link rel="apple-touch-icon-precomposed" href="{{ asset('img/logo.jpg') }}">
+
+    <!-- For iPhone -->
+    <meta name="msapplication-TileColor" content="#00bcd4">
+    <meta name="msapplication-TileImage" content="{{ asset('img/logo.jpg') }}">
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- MATERIALIZECSS Compiled and minified CSS -->
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="{{ asset('css/materialize.css') }}" media="screen,projection" />
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/logo_sm.jpg') }}" />
+    <link rel="stylesheet" href="{{ asset('css/base.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}" /> {% block stylesheets %}{% endblock %}
+</head>
+
+<body>
+    <nav>
+        <a href="#!" class="brand-logo">
+            <img class="navbar-logo" src="{{ asset('img/logo_sm.jpg') }}"></a>
+        <a href="#" data-target="menu_principal" class="sidenav-trigger show-on-large"><i class="material-icons color-primary-5">menu</i></a>
+        <ul class="right">
+            <li style="margin-right: 15px;">
+                </a><img class="circle" style="width: 20px;" alt="Hazte Premium" src="{{ asset('img/logo_sm.jpg') }}" />
+            </li>
+            <li><a href="#"><i class="material-icons color-primary-5" alt="Hazte Premium">person</i></a></li>
+            <li><a href="#"><i class="material-icons color-primary-5" alt="Hazte Premium">add_shopping_cart</i></a></li>
+        </ul>
+    </nav>
+
+    <ul id="menu_principal" class="sidenav">
+        <li>
+            <div class="user-view">
+                <div class="background">
+                    <img src="{{ asset('img/titulo_menu.png') }}">
+                </div>
+                <div style="height: 25px;"></div>
+                <a href="#name"><span class="black-text name right-align">Rubén Vargas</span></a>
+                <a href="#email"><span class="black-text email right-align">rubenconb88@gmail.com</span></a>
+            </div>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li><a class="waves-effect waves-orange center-text" href="#!">GAFAS GEEK MAN</a></li>
+        <li><a class="waves-effect waves-orange center-text" href="#!">GAFAS GEEK WOMAN</a></li>
+        <li><a class="waves-effect waves-orange center-text" href="#!">GAFAS GEEK NINJA</a></li>
+        <li><a class="waves-effect waves-orange center-text" href="#!">GAFAS GEEK FROG</a></li>
+        <li><a class="waves-effect waves-orange center-text" href="#!">GAFAS GEEK POWER</a></li>
+    </ul>
+    {% block body %}{% endblock %}
+
+    <!-- MATERIALIZECSS Compiled and minified JavaScript -->
+    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.longpress.js') }}"></script>
+    <script src="{{ asset('js/materialize.js') }}"></script>
+    <script src="{{ asset('js/base.js') }}"></script>
+    {% block javascripts %}{% endblock %}
+</body>
+
 </html>

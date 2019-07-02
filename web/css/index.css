@@ -1,0 +1,51 @@
+/* As hex codes */
+
+.color-primary-0 {
+    color: #B6A99B
+}
+
+
+/* Main Primary color */
+
+.color-primary-1 {
+    color: #FFFAF5
+}
+
+.color-primary-2 {
+    color: #DDD3C9
+}
+
+.color-primary-3 {
+    color: #948474
+}
+
+.color-primary-4 {
+    color: #6D5D4D
+}
+
+.color-primary-5 {
+    color: rgb(240, 69, 12)
+}
+
+
+/* Secundary Primary color */
+
+.color-primary-6 {
+    color: #FF4F17
+}
+
+.color-primary-7 {
+    color: #FF3D00
+}
+
+.color-primary-8 {
+    color: #B12B00
+}
+
+.color-primary-9 {
+    color: #831F00
+}
+
+body {
+    margin: 0;
+}

@@ -1,0 +1,260 @@
+/* As hex codes */
+
+.color-primary-0 {
+    color: #B6A99B
+}
+
+
+/* Main Primary color */
+
+.color-primary-1 {
+    color: #FFFAF5
+}
+
+.color-primary-2 {
+    color: #DDD3C9
+}
+
+.color-primary-3 {
+    color: #948474
+}
+
+.color-primary-4 {
+    color: #6D5D4D
+}
+
+.color-primary-5 {
+    color: #DB3500
+}
+
+
+/* Secundary Primary color */
+
+.color-primary-6 {
+    color: #FF4F17
+}
+
+.color-primary-7 {
+    color: #FF3D00
+}
+
+.color-primary-8 {
+    color: #B12B00
+}
+
+.color-primary-9 {
+    color: #831F00
+}
+
+
+/* fuentes de la web */
+
+@font-face {
+    font-family: ubuntu;
+    src: url(../fonts/ubuntu.ttf);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+
+/* logo del navbar */
+
+.navbar-logo {
+    width: 60px;
+    margin-left: 65px;
+    margin-top: 3px;
+}
+
+@media screen and (max-width: 600px) {
+    .navbar-logo {
+        width: 50px;
+        margin-top: 3px;
+    }
+}
+
+
+/* navbar */
+
+nav {
+    background-color: #fafafa;
+}
+
+body {
+    background-color: #DDD3C9;
+}
+
+
+/* footer */
+
+.footer {
+    padding: 0;
+    background-image: url(../img/ciudad.png);
+    background-size: contain;
+    background-position-x: center;
+}
+
+.footer>div {
+    background-color: black;
+    opacity: 0.8;
+}
+
+
+/* elementos del menu sidenav */
+
+#slide-out li {
+    font-family: ubuntu;
+}
+
+
+/* alinamiento del texto */
+
+.center-text {
+    text-align: center;
+}
+
+.right-align {
+    text-align: right;
+}
+
+.social-media img {
+    margin-top: 25px;
+    width: 40px;
+}
+
+.social-media img:hover {
+    opacity: 0.5;
+}
+
+footer a:hover {
+    opacity: 0.5;
+}
+
+
+/* div que contiene los productos */
+
+.productos {
+    background-color: white;
+    margin-top: 3px;
+}
+
+.productos .row {
+    text-align: center;
+    margin: 0;
+}
+
+
+/* botones del contenido */
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:900i');
+.wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.cta {
+    display: flex;
+    padding: 10px 10px;
+    margin-bottom: 6px;
+    width: 200px;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    color: white;
+    background: rgb(240, 69, 12);
+    transition: 1s;
+    box-shadow: 6px 6px 0 black;
+    transform: skewX(-15deg);
+}
+
+.cta>span:first-child {
+    margin-top: 8px;
+}
+
+
+/* para los span titulos de los botones */
+
+.first {
+    margin-right: 44px;
+}
+
+.second {
+    margin-right: 21px;
+}
+
+.cta:focus {
+    outline: none;
+}
+
+.cta:hover {
+    transition: 0.5s;
+    box-shadow: 10px 10px 0 rgb(129, 129, 129);
+}
+
+.cta span:nth-child(2) {
+    transition: 0.5s;
+    margin-right: 0px;
+}
+
+.cta:hover span:nth-child(2) {
+    transition: 0.5s;
+    margin-right: 45px;
+}
+
+span {
+    transform: skewX(15deg)
+}
+
+span:nth-child(2) {
+    width: 20px;
+    margin-left: 30px;
+    position: relative;
+    top: 12%;
+}
+
+
+/**************SVG****************/
+
+path.one {
+    transition: 0.4s;
+    transform: translateX(-60%);
+}
+
+path.two {
+    transition: 0.5s;
+    transform: translateX(-30%);
+}
+
+.cta:hover path.three {
+    animation: color_anim 1s infinite 0.2s;
+}
+
+.cta:hover path.one {
+    transform: translateX(0%);
+    animation: color_anim 1s infinite 0.6s;
+}
+
+.cta:hover path.two {
+    transform: translateX(0%);
+    animation: color_anim 1s infinite 0.4s;
+}
+
+
+/* SVG animations */
+
+@keyframes color_anim {
+    0% {
+        fill: white;
+    }
+    50% {
+        fill: black;
+    }
+    100% {
+        fill: white;
+    }
+}
