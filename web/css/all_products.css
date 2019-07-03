@@ -49,3 +49,43 @@
 body {
     margin: 0;
 }
+
+
+/* fuentes de la web */
+
+@font-face {
+    font-family: ubuntu;
+    src: url(../fonts/ubuntu.ttf);
+}
+
+@font-face {
+    font-family: lionello;
+    src: url(../fonts/lionello.ttf);
+}
+
+
+/* imagen de cada item */
+
+.imagen {
+    width: 10vh;
+}
+
+
+/* precio de cada item */
+
+.precio {
+    font-size: 10vh;
+    font-family: lionello;
+}
+
+
+/* el nombre de cada item*/
+
+.nombre {
+    color: black;
+    font-family: lionello;
+}
+
+.recibelo {
+    font-family: Arial, Helvetica, sans-serif;
+}

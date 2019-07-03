@@ -54,6 +54,11 @@
     src: url(../fonts/ubuntu.ttf);
 }
 
+@font-face {
+    font-family: lionello;
+    src: url(../fonts/lionello.ttf);
+}
+
 * {
     box-sizing: border-box;
 }
@@ -163,7 +168,7 @@ footer a:hover {
     margin-bottom: 6px;
     width: 200px;
     text-decoration: none;
-    font-family: 'Poppins', sans-serif;
+    font-family: lionello;
     font-size: 16px;
     color: white;
     background: rgb(240, 69, 12);
@@ -174,17 +179,18 @@ footer a:hover {
 
 .cta>span:first-child {
     margin-top: 8px;
+    margin-left: 2em;
 }
 
 
 /* para los span titulos de los botones */
 
 .first {
-    margin-right: 44px;
+    margin-right: 1.8em;
 }
 
 .second {
-    margin-right: 21px;
+    margin-right: 1em;
 }
 
 .cta:focus {
@@ -206,11 +212,11 @@ footer a:hover {
     margin-right: 45px;
 }
 
-span {
+.cta span {
     transform: skewX(15deg)
 }
 
-span:nth-child(2) {
+.cta span:nth-child(2) {
     width: 20px;
     margin-left: 30px;
     position: relative;
