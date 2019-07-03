@@ -198,6 +198,7 @@ footer a:hover {
 }
 
 .cta:hover {
+    cursor: pointer;
     transition: 0.5s;
     box-shadow: 10px 10px 0 rgb(129, 129, 129);
 }
