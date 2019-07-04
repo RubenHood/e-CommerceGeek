@@ -27,17 +27,17 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('css/materialize.css') }}" media="screen,projection" />
 
     <link rel="icon" type="image/x-icon" href="{{ asset('img/logo_sm.jpg') }}" />
-    <link rel="stylesheet" href="{{ asset('css/base.css') }}" /> {% block stylesheets %}{% endblock %}
+    <link rel="stylesheet" href="{{ asset('css/base.css') }}" /> 
+    {% block stylesheets %}{% endblock %}
 </head>
 
 <body>
     <nav>
-        <a href="#!" class="brand-logo">
-            <img class="navbar-logo" src="{{ asset('img/logo_sm.jpg') }}"></a>
+        <a href="{{ path('showAll') }}" class="brand-logo"><img class="navbar-logo" src="{{ asset('img/logo_sm.jpg') }}"></a>
         <a href="#" data-target="menu_principal" class="sidenav-trigger show-on-large"><i class="material-icons color-primary-5">menu</i></a>
         <ul class="right">
             <li style="margin-right: 15px;">
-                </a><img class="circle" style="width: 20px;" alt="Hazte Premium" src="{{ asset('img/logo_sm.jpg') }}" />
+                <img class="circle" style="width: 20px;" alt="Hazte Premium" src="{{ asset('img/logo_sm.jpg') }}" />
             </li>
             <li><a href="#"><i class="material-icons color-primary-5" alt="Hazte Premium">person</i></a></li>
             <li><a href="#"><i class="material-icons color-primary-5" alt="Hazte Premium">add_shopping_cart</i></a></li>
@@ -67,7 +67,7 @@
 
     <div class="container productos">
         <div class="row">
-            <img src="{{ asset('img/banner.jpg') }}" alt="banner">
+            <a href="{{ path('showAll') }}"><img src="{{ asset('img/banner.jpg') }}" alt="banner"></a>
         </div>
         <div class="row">
             <div class="col s4">

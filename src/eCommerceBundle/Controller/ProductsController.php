@@ -9,7 +9,7 @@ use eCommerceBundle\Entity\Product;
 class ProductsController extends Controller
 {
     /**
-     * @Route("/", methods={"GET"})
+     * @Route("/", methods={"GET"}, name="showAll")
      */
     public function getAllAction()
     {
@@ -25,7 +25,7 @@ class ProductsController extends Controller
     }
 
     /**
-     * @Route("/{id}", methods={"GET"})
+     * @Route("/{id}", methods={"GET"}, name="showOne")
      */
     public function getOneAction(Product $product)
     {
