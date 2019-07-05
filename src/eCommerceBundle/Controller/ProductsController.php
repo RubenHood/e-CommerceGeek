@@ -39,4 +39,20 @@ class ProductsController extends Controller
 
         return $this->render("@eCommerce/Default/one_products.html.twig", ["product" => $product]);
     }
+
+    /**
+     * @Route("/login", name="login")
+     */
+    public function loginAction()
+    {
+        //recuperamos el entiti manager
+        $em = $this->getDoctrine()->getManager();
+
+        //obtenemos la referencia al repositorio
+        $repository = $em->getRepository(Product::class);
+
+        $products = $repository->findAll();
+
+        return $this->render("@eCommerce/Default/all_products.html.twig", ["products" => $products]);
+    }
 }
