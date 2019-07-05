@@ -9,7 +9,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use eCommerceBundle\Form\UserType;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
  * User controller.
@@ -31,43 +30,6 @@ class UserController extends Controller
         $users = $em->getRepository(User::class)->findAll();
 
         return $this->render('@eCommerce/User/index.html.twig', ['users' => $users]);
-    }
-
-    /**
-     *
-     * @Route("/new", name="user_new")
-     * @Method({"GET", "POST"})
-     */
-    public function newAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
-    {
-        $user = new User();
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
-            $user->setPassword($password);
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
-
-            //creamos la variable sesion
-            $session = new Session();
-
-            // set and get session attributes
-            $session->set('user', $user->getUsername());
-            $session->set('email', $user->getEmail());
-            // $session->set('role', $user->getRoles());
-
-            return $this->redirectToRoute('user_index');
-        }
-
-        return $this->render('@eCommerce/User/new.html.twig', [
-            'user' => $user,
-            'form' => $form->createView(),
-        ]);
     }
 
     /**
