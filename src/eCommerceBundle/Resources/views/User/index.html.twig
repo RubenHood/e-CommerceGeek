@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Users list</h1>
+    <h1>Lista de Usuarios</h1>
 
     <table>
         <thead>
@@ -16,8 +16,7 @@
         <tbody>
         {% for user in users %}
             <tr>
-                <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
-                <td>{{ user.username }}</td>
+                <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.username }}</a></td>
                 <td>{{ user.password }}</td>
                 <td>{{ user.roles | join(',')}}</td>
                 <td>
