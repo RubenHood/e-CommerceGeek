@@ -11,11 +11,11 @@ use eCommerceBundle\Form\UserType;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
- * User controller.
+ * Admin controller.
  *
- * @Route("/user")
+ * @Route("/admin")
  */
-class UserController extends Controller
+class AdminController extends Controller
 {
     /**
      * 
@@ -69,7 +69,7 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="user_delete")
+     * @Route("/delete/{id}", name="user_delete")
      * 
      */
     public function deleteAction( User $user)

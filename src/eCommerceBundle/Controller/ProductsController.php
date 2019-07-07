@@ -10,7 +10,12 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use eCommerceBundle\Form\UserType;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\HttpFoundation\Session\Session;
+use eCommerceBundle\Form\LoginType;
 
+/**
+ * @Route("/")
+ */
 class ProductsController extends Controller
 {
     /**
@@ -95,8 +100,10 @@ class ProductsController extends Controller
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
+        $form = $this->createForm(LoginType::class, ["_username" => $lastUsername]);
+
         return $this->render('@eCommerce/User/login.html.twig', [
-            'last_username' => $lastUsername,
+            'form' => $form->createView(),
             'error'         => $error,
         ]);
     }
