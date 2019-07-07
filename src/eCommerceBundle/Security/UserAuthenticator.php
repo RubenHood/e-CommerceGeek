@@ -1,7 +1,7 @@
 <?php
 
 // src/AppBundle/Security/TokenAuthenticator.php
-namespace AppBundle\Security;
+namespace eCommerceBundle\Security;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,12 +11,22 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
+use Psr\Log\LoggerInterface;
 
 class UserAuthenticator extends AbstractGuardAuthenticator
 {
+    private $logger = null;
+
+    public function __construct(LoggerInterface $logger)
+    {   
+        $this->logger = $logger;
+    }
+
+
     public function supports(Request $request)
     {
-        return false;
+        $this->logger->info('Entro en supports');
+        return 'login' === $request->attributes->get('_route') && $request->isMethod('POST');
     }
 
     /**

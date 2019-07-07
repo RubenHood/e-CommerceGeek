@@ -21,7 +21,10 @@ security:
 
         main:
             anonymous: ~
-            provider: our_db_provider
+            provider: 
+            guard:
+                authenticators:
+                    - eCommerceBundle\Security\UserAuthenticator
             form_login:
                 login_path: login
                 check_path: login
