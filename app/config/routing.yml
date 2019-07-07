@@ -3,3 +3,6 @@ e_commerce:
     type:     annotation
     prefix:   /
 
+logout:
+    path: /logout
+

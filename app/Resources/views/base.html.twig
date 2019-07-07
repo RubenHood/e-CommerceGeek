@@ -43,9 +43,9 @@
                     <i class="material-icons color-primary-5">menu</i>
                 </a>
                 <ul class="right">
-                    {% if app.session.get('user') %}
+                    {% if app.user %}
                         <li  class="color-primary-5" style="margin-right: 10px;">
-                            <span>Bienvenido {{app.session.get('user')}}</span>
+                            <span>Bienvenido {{app.user.username}}</span>
                         </li>
                     {% endif %}
 
@@ -53,9 +53,9 @@
                         <img class="circle" style="width: 20px;" alt="Hazte Premium" src="{{ asset('img/logo_sm.jpg') }}"/>
                     </li>
 
-                    {% if app.session.get('user') %}
+                    {% if app.user %}
                         <li>
-                            <a class="color-primary-5" href="#">Logout</a>
+                            <a class="color-primary-5" href="{{ path('logout') }}">Logout</a>
                         </li>
 
                     {% else %}
@@ -63,7 +63,7 @@
                             <a class="color-primary-5" href="{{ path('login') }}">Login</a>
                         </li>
                         <li>
-                            <a href="{{ path('newUser') }}" class="color-primary-5">Register</a>
+                            <a class="color-primary-5" href="{{ path('newUser') }}">Register</a>
                         </li>
                     {% endif %}
 

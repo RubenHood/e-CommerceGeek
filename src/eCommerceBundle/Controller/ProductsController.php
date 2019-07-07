@@ -70,13 +70,13 @@ class ProductsController extends Controller
             $em->persist($user);
             $em->flush();
 
-            //creamos la variable sesion
-            $session = new Session();
+            // //creamos la variable sesion
+            // $session = new Session();
 
-            // set and get session attributes
-            $session->set('user', $user->getUsername());
-            $session->set('email', $user->getEmail());
-            // $session->set('role', $user->getRoles());
+            // // set and get session attributes
+            // $session->set('user', $user->getUsername());
+            // $session->set('email', $user->getEmail());
+            // // $session->set('role', $user->getRoles());
 
             return $this->redirectToRoute('showAll');
         }

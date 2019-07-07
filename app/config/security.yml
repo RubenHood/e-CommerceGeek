@@ -14,20 +14,22 @@ security:
             memory: ~
 
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
+    
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
         main:
+            pattern: ^/
             anonymous: ~
-            provider: 
+            provider: our_db_provider
             guard:
                 authenticators:
                     - eCommerceBundle\Security\UserAuthenticator
             form_login:
                 login_path: login
                 check_path: login
+            logout: true
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/*, roles: ROLE_ADMIN }
