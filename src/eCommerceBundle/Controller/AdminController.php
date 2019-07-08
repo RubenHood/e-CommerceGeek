@@ -4,8 +4,7 @@ namespace eCommerceBundle\Controller;
 
 use eCommerceBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use eCommerceBundle\Form\UserType;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -18,10 +17,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class AdminController extends Controller
 {
     /**
-     * 
-     *
      * @Route("/all", name="user_index")
-     * @Method("GET")
      */
     public function indexAction()
     {
@@ -34,7 +30,6 @@ class AdminController extends Controller
 
     /**
      * @Route("/show/{id}", name="user_show")
-     * @Method("GET")
      */
     public function showAction(User $user)
     {
@@ -44,7 +39,6 @@ class AdminController extends Controller
 
     /**
      * @Route("/edit/{id}", name="user_edit")
-     * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, UserPasswordEncoderInterface $passwordEncoder, User $user)
     {

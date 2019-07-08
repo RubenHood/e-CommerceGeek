@@ -72,10 +72,8 @@ class ProductsController extends Controller
             // get the login error if there is one
             $error = $authenticationUtils->getLastAuthenticationError();
 
-            $form = $this->createForm(LoginType::class, ["_username" => $user->getUsername()]);
-
             return $this->render('@eCommerce/User/login.html.twig', [
-                'form' => $form->createView(),
+                'last_username' => $user->getUsername(),
                 'error'         => $error,
             ]);
         }
@@ -99,10 +97,8 @@ class ProductsController extends Controller
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        $form = $this->createForm(LoginType::class, ["_username" => $lastUsername]);
-
         return $this->render('@eCommerce/User/login.html.twig', [
-            'form' => $form->createView(),
+            'last_username' => $lastUsername,
             'error'         => $error,
         ]);
     }
