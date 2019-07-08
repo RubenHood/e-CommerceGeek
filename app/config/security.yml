@@ -32,4 +32,5 @@ security:
             logout: true
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/shop, roles: ROLE_USER }
         - { path: ^/admin/*, roles: ROLE_ADMIN }

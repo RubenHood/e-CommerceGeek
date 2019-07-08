@@ -10,7 +10,6 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use eCommerceBundle\Form\UserType;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use Symfony\Component\HttpFoundation\Session\Session;
 use eCommerceBundle\Form\LoginType;
 
 /**
@@ -55,7 +54,7 @@ class ProductsController extends Controller
      * @Route("/user/new", name="newUser")
      * 
      */
-    public function registroAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function registroAction(Request $request, UserPasswordEncoderInterface $passwordEncoder, AuthenticationUtils $authenticationUtils)
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -70,15 +69,15 @@ class ProductsController extends Controller
             $em->persist($user);
             $em->flush();
 
-            // //creamos la variable sesion
-            // $session = new Session();
+            // get the login error if there is one
+            $error = $authenticationUtils->getLastAuthenticationError();
 
-            // // set and get session attributes
-            // $session->set('user', $user->getUsername());
-            // $session->set('email', $user->getEmail());
-            // // $session->set('role', $user->getRoles());
+            $form = $this->createForm(LoginType::class, ["_username" => $user->getUsername()]);
 
-            return $this->redirectToRoute('showAll');
+            return $this->render('@eCommerce/User/login.html.twig', [
+                'form' => $form->createView(),
+                'error'         => $error,
+            ]);
         }
 
         return $this->render('@eCommerce/User/registro.html.twig', [
