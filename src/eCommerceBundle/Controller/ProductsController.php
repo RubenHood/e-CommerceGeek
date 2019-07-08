@@ -73,7 +73,7 @@ class ProductsController extends Controller
             $error = $authenticationUtils->getLastAuthenticationError();
 
             return $this->render('@eCommerce/User/login.html.twig', [
-                'last_username' => $user->getUsername(),
+                'last_username' => $user->getEmail(),
                 'error'         => $error,
             ]);
         }

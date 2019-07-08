@@ -9,7 +9,7 @@ security:
         our_db_provider:
             entity:
                 class: eCommerceBundle:User
-                property: username
+                property: email
         in_memory:
             memory: ~
 
