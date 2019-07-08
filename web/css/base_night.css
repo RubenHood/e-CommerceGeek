@@ -24,7 +24,7 @@
 }
 
 .color {
-    color: rgb(240, 69, 12);
+    color: white;
 }
 
 
@@ -87,7 +87,7 @@ body {
 /* navbar */
 
 nav {
-    background-color: #fafafa;
+    background-color: #645b5b;
 }
 
 body {

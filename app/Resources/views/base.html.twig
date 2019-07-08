@@ -29,21 +29,36 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('css/materialize.css') }}" media="screen,projection" />
 
     <link rel="icon" type="image/x-icon" href="{{ asset('img/logo_sm.jpg') }}" />
-    <link rel="stylesheet" href="{{ asset('css/base.css') }}" /> {% block stylesheets %}{% endblock %}
+    <link rel="stylesheet" href="{{ asset('css/base_night.css') }}" /> {% block stylesheets %}{% endblock %}
 </head>
 
 <body>
     <nav>
         <a href="{{ path('showAll') }}" class="brand-logo"><img class="navbar-logo" src="{{ asset('img/logo_sm.jpg') }}"></a>
         <a class="sidenav-trigger show-on-large" data-target="menu_principal" href="#">
-            <i class="material-icons color-primary-5">menu</i>
+            <i class="material-icons color" >menu</i>
         </a>
         <ul class="right">
             {% if app.user %}
-            <li class="color-primary-5" style="margin-right: 10px;">
+            <li class="color" style="margin-right: 10px;">
                 <span>Bienvenido {{app.user.username}}</span>
             </li>
-            {% endif %} {% if is_granted("ROLE_ADMIN") %} Hola {{ app.user.username }} {% endif %}
+            {% endif %} 
+            {% if is_granted("ROLE_ADMIN") %} 
+             
+            <li>
+                <a class="color" href="{{ path('logout') }}">MENU DE ADMIN</a>
+            </li>
+            
+            {% endif %}
+
+            {% if is_granted("ROLE_USER") %} 
+            <li>
+                <a class="color" href="{{ path('logout') }}">MENU DE USUARIO</a>
+            </li>
+            
+            
+            {% endif %}
 
             <li style="margin-right: 15px;">
                 <img class="circle" style="width: 20px;" alt="Hazte Premium" src="{{ asset('img/logo_sm.jpg') }}" />
@@ -51,7 +66,7 @@
 
             {% if app.user %}
             <li>
-                <a class="color-primary-5" href="{{ path('logout') }}">Logout</a>
+                <a class="color" href="{{ path('logout') }}">Logout</a>
             </li>
 
             {% else %}
