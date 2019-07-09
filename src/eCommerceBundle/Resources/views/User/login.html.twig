@@ -1,47 +1,37 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}Log in
 {% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/login.css') }}"/>
 {% endblock %}
-
 {% block body %}
     <div class="container productos">
         <div class="row">
-            <form class="col s5" action="{{ path('login') }}" method="post">
+            <form action="{{ path('login') }}" method="post">
                 <div class="card color">
                     <div class="card-content">
                         <span class="card-title">Log in</span>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">face</i>
-                                <input type="email" class="validate" id="username" name="_username" value="{{ last_username }}">
-                                <label for="username">Email:</label>
-                                <span class="helper-text" data-error="wrong" data-success="right">
-                                    {% if error %}
-                                        {{ error.messageKey|trans(error.messageData, 'security') }}
-                                    {% endif %}
-                                </span>
-                            </div>
+                        <div class="input-field">
+                            <i class="material-icons prefix">face</i>
+                            <input type="email" class="validate" id="username" name="_username" value="{{ last_username }}">
+                            <label for="username">Email:</label>
+                            <span class="helper-text" data-error="wrong" data-success="right">
+                                {% if error %}
+                                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                                {% endif %}
+                            </span>
                         </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">enhanced_encryption</i>
-                                <input class="validate" id="password" name="_password" type="password">
-                                <label for="password">Password</label>
-                                <span class="helper-text" data-error="wrong" data-success="right">
-                                    {% if error %}
-                                        {{ error.messageKey|trans(error.messageData, 'security') }}
-                                    {% endif %}
-                                </span>
-                            </div>
+                        <div class="input-field">
+                            <i class="material-icons prefix">enhanced_encryption</i>
+                            <input class="validate" id="password" name="_password" type="password">
+                            <label for="password">Password</label>
+                            <span class="helper-text" data-error="wrong" data-success="right">
+                                {% if error %}
+                                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                                {% endif %}
+                            </span>
                         </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <button class="btn color" type="submit">login</button>
-                            </div>
-                        </div>
+                        <button class="btn color" type="submit">login</button>
                     </div>
                 </div>
             </form>
