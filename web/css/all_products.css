@@ -51,6 +51,19 @@ body {
 }
 
 
+/* div que contiene los productos */
+
+.productos {
+    background-color: white;
+    margin-top: 3px;
+}
+
+.productos .row {
+    text-align: center;
+    margin: 0;
+}
+
+
 /* fuentes de la web */
 
 @font-face {

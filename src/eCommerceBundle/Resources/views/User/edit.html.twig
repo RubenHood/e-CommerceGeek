@@ -1,11 +1,20 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Editar Usuario</h1>
 
-    {{ form_start(edit_form) }}
+    <div class="container productos">
+
+        <h1>Editar Usuario</h1>
+
+        {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Guardar" />
-    {{ form_end(edit_form) }}
+        <input type="submit" value="Guardar"/>
+        {{ form_end(edit_form) }}
+        <h1>Editar Usuario</h1>
 
+        {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="Guardar"/>
+        {{ form_end(edit_form) }}
+    </div>
 {% endblock %}

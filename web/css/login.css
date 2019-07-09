@@ -1,0 +1,30 @@
+@font-face {
+    font-family: ubuntu;
+    src: url(../fonts/ubuntu.ttf);
+}
+
+@font-face {
+    font-family: lionello;
+    src: url(../fonts/lionello.ttf);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+
+/* div que contiene los productos */
+
+.productos {
+    background-color: white;
+    margin-top: 3px;
+}
+
+.productos .row {
+    text-align: center;
+    margin: 0;
+}

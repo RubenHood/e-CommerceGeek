@@ -141,19 +141,6 @@ footer a:hover {
 }
 
 
-/* div que contiene los productos */
-
-.productos {
-    background-color: white;
-    margin-top: 3px;
-}
-
-.productos .row {
-    text-align: center;
-    margin: 0;
-}
-
-
 /* botones del contenido */
 
 @import url('https://fonts.googleapis.com/css?family=Poppins:900i');
