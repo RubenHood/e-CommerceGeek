@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use eCommerceBundle\Form\UserType;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Admin controller.
@@ -31,10 +32,14 @@ class AdminController extends Controller
     /**
      * @Route("/show/{id}", name="user_show")
      */
-    public function showAction(User $user)
+    public function showAction(User $userRequest, UserInterface $userLogged = null)
     {
-
-        return $this->render('@eCommerce/User/show.html.twig', ['user' => $user]);
+        // comprobamos si el usuario que realiza la peticion es el mismo que está logueado
+        if($userLogged == $userRequest){
+            return $this->render('@eCommerce/User/show.html.twig', ['user' => $userRequest]);
+        }else{
+            throw $this->createAccessDeniedException('Solo puede editar su usuario.');
+        }
     }
 
     /**

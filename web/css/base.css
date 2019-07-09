@@ -265,3 +265,26 @@ path.two {
         fill: white;
     }
 }
+
+
+/* //prueba */
+
+.dropdown-content.row {
+    overflow: visible;
+    width: 60%;
+    height: auto;
+}
+
+.vertical-tab-target {
+    display: none;
+}
+
+.vertical-tabs {
+    border-left: #2196f3;
+    border-width: 2px;
+    padding: 0 !important;
+}
+
+.vertical-tabs li a {
+    color: black !important;
+}
