@@ -10,12 +10,13 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use eCommerceBundle\Form\UserType;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use eCommerceBundle\Form\LoginType;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 
 /**
  * @Route("/")
  */
-class ProductsController extends Controller
+class UserController extends Controller
 {
     /**
      * @Route("/", methods={"GET"}, name="showAll")
@@ -101,5 +102,34 @@ class ProductsController extends Controller
             'last_username' => $lastUsername,
             'error'         => $error,
         ]);
+    }
+
+    /**
+     * @Route("/user/logged/edit/{id}", name="edit_user")
+     */
+    public function editAction(Request $request, UserInterface $userLogged = null, UserPasswordEncoderInterface $passwordEncoder, User $userRequest)
+    {
+        if ($userLogged == $userRequest) {
+            $editForm = $this->createForm(UserType::class, $userRequest);
+            $editForm->handleRequest($request);
+
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $password = $passwordEncoder->encodePassword($userRequest, $userRequest->getPlainPassword());
+                $userRequest->setPassword($password);
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($userRequest);
+                $em->flush();
+
+                return $this->redirectToRoute('user_index');
+            }
+
+            return $this->render('@eCommerce/User/edit.html.twig', array(
+                'user' => $userRequest,
+                'edit_form' => $editForm->createView()
+            ));
+        } else {
+            throw new AccessDeniedException('Solo puede editar su usuario');
+        }
     }
 }

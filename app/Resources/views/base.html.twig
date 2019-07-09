@@ -45,9 +45,15 @@
 
         {% if app.user %}
             <ul class="dropdown-content" id="dropdown1" style="margin-top: 25px !important">
-                <li>
-                    <a href="{{ path('user_show', { 'id': app.user.id }) }}">Mi perfil</a>
-                </li>
+                {% if is_granted("ROLE_ADMIN") %}
+                    <li>
+                        <a href="{{ path('admin_show_user', { 'id': app.user.id }) }}">Mi perfil</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{{ path('show_user', { 'id': app.user.id }) }}">Mi perfil</a>
+                    </li>
+                {% endif %}
                 <li class="divider"></li>
                 <li>
                     <a class="color" href="{{ path('logout') }}">Logout</a>
@@ -147,7 +153,7 @@
                     <a class="waves-effect waves-orange center-text" href="{{path('user_index')}}">Usuarios</a>
                 </li>
                 <li>
-                    <a class="waves-effect waves-orange center-text" href="#!">Productos</a>
+                    <a class="waves-effect waves-orange center-text" href="{{path('adminAllProduct')}}">Productos</a>
                 </li>
             {% endif %}
         </ul>

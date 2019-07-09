@@ -19,7 +19,7 @@ use eCommerceBundle\Entity\Product;
 class AdminController extends Controller
 {
     /**
-     * @Route("/all", name="user_index")
+     * @Route("/users", name="user_index")
      */
     public function indexAction()
     {
@@ -27,24 +27,20 @@ class AdminController extends Controller
 
         $users = $em->getRepository(User::class)->findAll();
 
-        return $this->render('@eCommerce/User/index.html.twig', ['users' => $users]);
+        return $this->render('@eCommerce/Admin/admin_all_users.html.twig', ['users' => $users]);
     }
 
     /**
-     * @Route("/show/{id}", name="user_show")
+     * @Route("/users/show/{id}", name="admin_show_user")
      */
     public function showAction(User $userRequest, UserInterface $userLogged = null)
     {
         // comprobamos si el usuario que realiza la peticion es el mismo que está logueado o es el admin
-        if($userLogged == $userRequest || $this->isGranted('ROLE_ADMIN')){
-            return $this->render('@eCommerce/User/show.html.twig', ['user' => $userRequest]);
-        }else{
-            throw $this->createAccessDeniedException('Solo puede editar su usuario.');
-        }
+        return $this->render('@eCommerce/Admin/admin_show_user.html.twig', ['user' => $userRequest]);
     }
 
     /**
-     * @Route("/edit/{id}", name="user_edit")
+     * @Route("/users/edit/{id}", name="admin_edit_user")
      */
     public function editAction(Request $request, UserPasswordEncoderInterface $passwordEncoder, User $user)
     {
@@ -62,21 +58,21 @@ class AdminController extends Controller
             return $this->redirectToRoute('user_index');
         }
 
-        return $this->render('@eCommerce/User/edit.html.twig', array(
+        return $this->render('@eCommerce/Admin/admin_edit_user.html.twig', array(
             'user' => $user,
             'edit_form' => $editForm->createView()
         ));
     }
 
     /**
-     * @Route("/delete/{id}", name="user_delete")
+     * @Route("/users/delete/{id}", name="admin_delete_user")
      * 
      */
-    public function deleteAction( User $user)
+    public function deleteAction(User $user)
     {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($user);
-            $em->flush();
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($user);
+        $em->flush();
 
         return $this->redirectToRoute('user_index');
     }

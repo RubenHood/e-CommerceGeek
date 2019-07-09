@@ -24,9 +24,9 @@
                         <td>{{ user.roles | join(',')}}</td>
                         <td>
                             <ul>
-                                <li><a href="{{ path('user_show', { 'id': user.id }) }}">show</a></li>
-                                <li><a href="{{ path('user_edit', { 'id': user.id }) }}">edit</a></li>
-                                <li><a href="{{ path('user_delete', { 'id': user.id }) }}">delete</a></li>
+                                <li><a href="{{ path('admin_show_user', { 'id': user.id }) }}">show</a></li>
+                                <li><a href="{{ path('admin_edit_user', { 'id': user.id }) }}">edit</a></li>
+                                <li><a href="{{ path('admin_delete_user', { 'id': user.id }) }}">delete</a></li>
                             </ul>
                         </td>
                     </tr>

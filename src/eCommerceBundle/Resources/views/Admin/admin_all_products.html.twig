@@ -28,11 +28,11 @@
                         <td>{{ product.img}}</td>
                         <td>{{ product.category}}</td>
                         <td>
-                            <ul>
-                                <li><ahref="{{ path('user_show', { 'id': product.id }) }}">show</a></li>
-                                <li><ahref="{{ path('user_edit', { 'id': product.id }) }}">edit</a></li>
-                                <li><ahref="{{ path('user_delete', { 'id': product.id }) }}">delete</a></li>
-                            </ul>
+                            {# <ul>
+                                <li><ahref="{{ path('admin_show_user', { 'id': product.id }) }}">show</a></li>
+                                <li><ahref="{{ path('admin_edit_user', { 'id': product.id }) }}">edit</a></li>
+                                <li><ahref="{{ path('admin_delete_user', { 'id': product.id }) }}">delete</a></li>
+                            </ul> #}
                         </td>
                     </tr>
                 {% endfor %}
