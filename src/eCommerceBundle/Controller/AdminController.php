@@ -34,8 +34,8 @@ class AdminController extends Controller
      */
     public function showAction(User $userRequest, UserInterface $userLogged = null)
     {
-        // comprobamos si el usuario que realiza la peticion es el mismo que está logueado
-        if($userLogged == $userRequest){
+        // comprobamos si el usuario que realiza la peticion es el mismo que está logueado o es el admin
+        if($userLogged == $userRequest || $this->isGranted('ROLE_ADMIN')){
             return $this->render('@eCommerce/User/show.html.twig', ['user' => $userRequest]);
         }else{
             throw $this->createAccessDeniedException('Solo puede editar su usuario.');
