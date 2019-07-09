@@ -1,0 +1,44 @@
+{% extends "base.html.twig" %}
+{% block title %}Bienvenido a Geek
+{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/all_products.css') }}"/>
+{% endblock %}
+{% block body %}
+
+    <div class="container productos">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>descripcion</th>
+                    <th>Precio</th>
+                    <th>Imagen</th>
+                    <th>Categoria</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td>
+                            {{ product.name }}
+                        </td>
+                        <td>{{ product.description }}</td>
+                        <td>{{ product.price}}</td>
+                        <td>{{ product.img}}</td>
+                        <td>{{ product.category}}</td>
+                        <td>
+                            <ul>
+                                <li><ahref="{{ path('user_show', { 'id': product.id }) }}">show</a></li>
+                                <li><ahref="{{ path('user_edit', { 'id': product.id }) }}">edit</a></li>
+                                <li><ahref="{{ path('user_delete', { 'id': product.id }) }}">delete</a></li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
+{% block javascripts %}{% endblock %}

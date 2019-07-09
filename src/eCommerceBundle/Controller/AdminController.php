@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use eCommerceBundle\Form\UserType;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use eCommerceBundle\Entity\Product;
 
 /**
  * Admin controller.
@@ -78,5 +79,21 @@ class AdminController extends Controller
             $em->flush();
 
         return $this->redirectToRoute('user_index');
+    }
+
+    /**
+     * @Route("/products", methods={"GET"}, name="adminAllProduct")
+     */
+    public function adminAllProductsAction()
+    {
+        //recuperamos el entiti manager
+        $em = $this->getDoctrine()->getManager();
+
+        //obtenemos la referencia al repositorio
+        $repository = $em->getRepository(Product::class);
+
+        $products = $repository->findAll();
+
+        return $this->render("@eCommerce/Admin/admin_all_products.html.twig", ["products" => $products]);
     }
 }

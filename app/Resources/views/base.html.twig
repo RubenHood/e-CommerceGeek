@@ -1,230 +1,238 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta content="no" name="msapplication-tap-highlight">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta content="yes" name="apple-mobile-web-app-capable" />
-    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style" />
-    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta content="no" name="msapplication-tap-highlight">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+        <meta content="yes" name="apple-mobile-web-app-capable"/>
+        <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+        <meta
+        content="IE=edge" http-equiv="X-UA-Compatible">
 
-    <!--	Color de la barra principal Chrome para mobil-->
-    <meta content="#00acc1" name="theme-color">
+        <!--	Color de la barra principal Chrome para mobil-->
+        <meta
+        content="#00acc1" name="theme-color">
 
-    <!-- Favicons-->
-    <link rel="apple-touch-icon-precomposed" href="{{ asset('img/logo.jpg') }}">
+        <!-- Favicons-->
+        <link
+        rel="apple-touch-icon-precomposed" href="{{ asset('img/logo.jpg') }}">
 
-    <!-- For iPhone -->
-    <meta content="#00bcd4" name="msapplication-TileColor">
-    <meta name="msapplication-TileImage" content="{{ asset('img/logo.jpg') }}">
-    <title>
-        {% block title %}{% endblock %}
-    </title>
+        <!-- For iPhone -->
+        <meta content="#00bcd4" name="msapplication-TileColor">
+        <meta name="msapplication-TileImage" content="{{ asset('img/logo.jpg') }}">
+        <title>
+            {% block title %}{% endblock %}
+        </title>
 
-    <!-- MATERIALIZECSS Compiled and minified CSS -->
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="{{ asset('css/materialize.css') }}" media="screen,projection" />
+        <!-- MATERIALIZECSS Compiled and minified CSS -->
+        <!--Import Google Icon Font-->
+        <link
+        href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="{{ asset('css/materialize.css') }}" media="screen,projection"/>
 
-    <link rel="icon" type="image/x-icon" href="{{ asset('img/logo_sm.jpg') }}" /> {% if is_granted("ROLE_ADMIN") %}
-    <link rel="stylesheet" href="{{ asset('css/base_night.css') }}" /> {% else %}
-    <link rel="stylesheet" href="{{ asset('css/base.css') }}" /> {% endif %} {% block stylesheets %}{% endblock %}
-</head>
+        <link rel="icon" type="image/x-icon" href="{{ asset('img/logo_sm.jpg') }}"/>
+        {% if is_granted("ROLE_ADMIN") %}
+            <link rel="stylesheet" href="{{ asset('css/base_night.css') }}"/>
+        {% else %}
+            <link rel="stylesheet" href="{{ asset('css/base.css') }}"/>
+        {% endif %}
+        {% block stylesheets %}{% endblock %}
+    </head>
 
-<body>
+    <body>
 
-    {% if app.user %}
-    <ul class="dropdown-content" id="dropdown1" style="margin-top: 25px !important">
-        <li>
-            <a href="{{ path('user_show', { 'id': app.user.id }) }}">Mi perfil</a>
-        </li>
-        <li class="divider"></li>
-        <li>
-            <a class="color" href="{{ path('logout') }}">Logout</a>
-        </li>
-    </ul>
-    {% endif %}
-
-    <nav>
-        <div class="nav-wrapper container">
-            <a href="{{ path('showAll') }}" class="brand-logo"><img class="navbar-logo" src="{{ asset('img/logo_sm.jpg') }}"></a>
-            <a class="sidenav-trigger show-on-large" data-target="menu_principal" href="#">
-                <i class="material-icons color">menu</i>
-            </a>
-            <ul class="right">
-                {% if is_granted("ROLE_ADMIN") %}
-                <li class="color" style="margin-right: 10px;">
-                    <span>
-                        <b>ADMIN</b>
-                    </span>
-                </li>
-                {% endif %}
-
-                <li style="margin-right: 15px;">
-                    <img class="circle" style="width: 20px;" alt="Hazte Premium" src="{{ asset('img/logo_sm.jpg') }}" />
-                </li>
-                {% if app.user %}
+        {% if app.user %}
+            <ul class="dropdown-content" id="dropdown1" style="margin-top: 25px !important">
                 <li>
-                    <a class="dropdown-trigger color" data-target="dropdown1" href="#!">{{app.user.username}}<i
-                            class="material-icons right">arrow_drop_down</i>
-                    </a>
+                    <a href="{{ path('user_show', { 'id': app.user.id }) }}">Mi perfil</a>
                 </li>
-                {% endif %} {% if not app.user %}
+                <li class="divider"></li>
                 <li>
-                    <a class="color" href="{{ path('login') }}">Login</a>
-                </li>
-                <li>
-                    <a class="color" href="{{ path('newUser') }}">Register</a>
-                </li>
-                {% endif %}
-
-                <li>
-                    <a href="#">
-                        <i alt="Hazte Premium" class="material-icons color">add_shopping_cart</i>
-                    </a>
+                    <a class="color" href="{{ path('logout') }}">Logout</a>
                 </li>
             </ul>
-        </div>
-    </nav>
+        {% endif %}
 
+        <nav>
+            <div class="nav-wrapper container">
+                <a href="{{ path('showAll') }}" class="brand-logo"><img class="navbar-logo" src="{{ asset('img/logo_sm.jpg') }}"></a>
+                <a class="sidenav-trigger show-on-large" data-target="menu_principal" href="#">
+                    <i class="material-icons color">menu</i>
+                </a>
+                <ul class="right">
+                    {% if is_granted("ROLE_ADMIN") %}
+                        <li class="color" style="margin-right: 10px;">
+                            <span>
+                                <b>ADMIN</b>
+                            </span>
+                        </li>
+                    {% endif %}
 
-    <ul class="sidenav" id="menu_principal">
-        <li>
-            <div class="user-view">
-                <div class="background">
-                    <img src="{{ asset('img/titulo_menu.png') }}">
-                </div>
-                <div style="height: 25px;"></div>
-                <a href="#name">
-                    <span class="black-text name right-align">Rubén Vargas</span>
-                </a>
-                <a href="#email">
-                    <span class="black-text email right-align">rubenconb88@gmail.com</span>
-                </a>
+                    <li style="margin-right: 15px;">
+                        <img class="circle" style="width: 20px;" alt="Hazte Premium" src="{{ asset('img/logo_sm.jpg') }}"/>
+                    </li>
+                    {% if app.user %}
+                        <li>
+                            <a class="dropdown-trigger color" data-target="dropdown1" href="#!">{{app.user.username}}<i class="material-icons right">arrow_drop_down</i>
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if not app.user %}
+                        <li>
+                            <a class="color" href="{{ path('login') }}">Login</a>
+                        </li>
+                        <li>
+                            <a class="color" href="{{ path('newUser') }}">Register</a>
+                        </li>
+                    {% endif %}
+
+                    <li>
+                        <a href="#">
+                            <i alt="Hazte Premium" class="material-icons color">add_shopping_cart</i>
+                        </a>
+                    </li>
+                </ul>
             </div>
-        </li>
-        <li>
-            <div class="divider"></div>
-        </li>
-        <li>
-            <a class="waves-effect waves-orange center-text" href="#!">GAFAS GEEK MAN</a>
-        </li>
-        <li>
-            <a class="waves-effect waves-orange center-text" href="#!">GAFAS GEEK WOMAN</a>
-        </li>
-        <li>
-            <a class="waves-effect waves-orange center-text" href="#!">GAFAS GEEK NINJA</a>
-        </li>
-        <li>
-            <a class="waves-effect waves-orange center-text" href="#!">GAFAS GEEK FROG</a>
-        </li>
-        <li>
-            <a class="waves-effect waves-orange center-text" href="#!">GAFAS GEEK POWER</a>
-        </li>
-    </ul>
+        </nav>
+
+
+        <ul class="sidenav" id="menu_principal">
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                        <img src="{{ asset('img/titulo_menu.png') }}">
+                    </div>
+                    <div style="height: 25px;"></div>
+                    <a href="#name">
+                        {% if app.user %}
+                            <span class="black-text name right-align">{{app.user.username}}</span>
+                        {% endif %}
+                    </a>
+                    <a href="#email">
+                        {% if app.user %}
+                            <span class="black-text email right-align">{{app.user.email}}</span>
+                        {% endif %}
+
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li>
+                <a class="waves-effect waves-orange center-text" href="#!">GAFAS GEEK MAN</a>
+            </li>
+            <li>
+                <a class="waves-effect waves-orange center-text" href="#!">GAFAS GEEK WOMAN</a>
+            </li>
+            <li>
+                <a class="waves-effect waves-orange center-text" href="#!">GAFAS GEEK NINJA</a>
+            </li>
+            <li>
+                <a class="waves-effect waves-orange center-text" href="#!">GAFAS GEEK FROG</a>
+            </li>
+            <li>
+                <a class="waves-effect waves-orange center-text" href="#!">GAFAS GEEK POWER</a>
+            </li>
+            {% if is_granted("ROLE_ADMIN") %}
+                <li>
+                    <div class="divider"></div>
+                </li>
+                <li>
+                    <a class="subheader">Menu Admin</a>
+                </li>
+                <li>
+                    <a class="waves-effect waves-orange center-text" href="{{path('user_index')}}">Usuarios</a>
+                </li>
+                <li>
+                    <a class="waves-effect waves-orange center-text" href="#!">Productos</a>
+                </li>
+            {% endif %}
+        </ul>
 
         {% block body %}{% endblock %}
-    
 
-    <footer class="page-footer footer">
-        <div>
-            <div class="container">
-                <div class="row" style="margin-bottom: 0;">
-                    <div class="col s6 offset6 social-media">
-                        <a class="grey-text text-lighten-3" href="https://www.facebook.com"><img src="{{ asset('img/facebook.png') }}" alt=""></a>
 
-                        <a class="grey-text text-lighten-3" href="https://www.instagram.com"><img src="{{ asset('img/instagram.png') }}" alt=""></a>
+        <footer class="page-footer footer">
+            <div>
+                <div class="container">
+                    <div class="row" style="margin-bottom: 0;">
+                        <div class="col s6 offset6 social-media">
+                            <a class="grey-text text-lighten-3" href="https://www.facebook.com"><img src="{{ asset('img/facebook.png') }}" alt=""></a>
 
-                        <a class="grey-text text-lighten-3" href="https://www.twitter.com"><img src="{{ asset('img/twitter.png') }}" alt=""></a>
+                            <a class="grey-text text-lighten-3" href="https://www.instagram.com"><img src="{{ asset('img/instagram.png') }}" alt=""></a>
 
-                        <a class="grey-text text-lighten-3" href="https://www.whatsapp.com/"><img src="{{ asset('img/whatsapp.png') }}" alt=""></a>
+                            <a class="grey-text text-lighten-3" href="https://www.twitter.com"><img src="{{ asset('img/twitter.png') }}" alt=""></a>
 
-                        <a class="grey-text text-lighten-3" href="https://www.linkedin.com"><img src="{{ asset('img/linkedin.png') }}" alt=""></a>
+                            <a class="grey-text text-lighten-3" href="https://www.whatsapp.com/"><img src="{{ asset('img/whatsapp.png') }}" alt=""></a>
 
-                        <a class="grey-text text-lighten-3" href="https://youtube.com"><img src="{{ asset('img/youtube.png') }}" alt=""></a>
+                            <a class="grey-text text-lighten-3" href="https://www.linkedin.com"><img src="{{ asset('img/linkedin.png') }}" alt=""></a>
 
+                            <a class="grey-text text-lighten-3" href="https://youtube.com"><img src="{{ asset('img/youtube.png') }}" alt=""></a>
+
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col s3">
-                        <h5 class="white-text">INFORMATION</h5>
-                        <ul>
-                            <li><a class="grey-text text-lighten-3" href="#!">ABOUT US</a></li>
-                            <li><a class="grey-text text-lighten-3" href="#!">CONTACT US</a></li>
-                            <li><a class="grey-text text-lighten-3" href="#!">DELIVERY INFO</a></li>
-                            <li><a class="grey-text text-lighten-3" href="#!">PRIVACY POLICY</a></li>
-                            <li><a class="grey-text text-lighten-3" href="#!">TERMS & CONDITIONS</a></li>
-                            <li><a class="grey-text text-lighten-3" href="#!">SITE MAP</a></li>
-                            <li><a class="grey-text text-lighten-3" href="#!">RETURNS</a></li>
-                        </ul>
-                    </div>
-                    <div class="col s3">
-                        <h5 class="white-text">MY ACCOUNT</h5>
-                        <ul>
-                            <li><a class="grey-text text-lighten-3" href="#!">MY ACCOUNT</a></li>
-                            <li><a class="grey-text text-lighten-3" href="#!">WISH LIST</a></li>
-                            <li><a class="grey-text text-lighten-3" href="#!">ORDER HISTORY</a></li>
-                            <li><a class="grey-text text-lighten-3" href="#!">BRANDS</a></li>
-                            <li><a class="grey-text text-lighten-3" href="#!">SPECIALS</a></li>
-                            <li><a class="grey-text text-lighten-3" href="#!">NEWSLETTER</a></li>
-                            <li><a class="grey-text text-lighten-3" href="#!">SECURE PAYMENT</a></li>
-                        </ul>
-                    </div>
-                    <div class="col s3">
-                        <h5 class="white-text">I WANT...</h5>
-                        <ul>
-                            <li>Escriba aquí lo que nos quiere enviar.
-                            </li>
-                            <div class="row">
-                                <form class="col s12">
-                                    <div class="row">
-                                        <div class="input-field col s12">
-                                            <textarea class="materialize-textarea" id="textarea1" placeholder="I want..." style="color: white"></textarea>
+                    <div class="row">
+                        <div class="col s3">
+                            <h5 class="white-text">INFORMATION</h5>
+                            <ul>
+                                <li><a class="grey-text text-lighten-3" href="#!">ABOUT US</a></li>
+                                <li><a class="grey-text text-lighten-3" href="#!">CONTACT US</a></li>
+                                <li><a class="grey-text text-lighten-3" href="#!">DELIVERY INFO</a></li>
+                                <li><a class="grey-text text-lighten-3" href="#!">PRIVACY POLICY</a></li>
+                                <li><a class="grey-text text-lighten-3" href="#!">TERMS & CONDITIONS</a></li>
+                                <li><a class="grey-text text-lighten-3" href="#!">SITE MAP</a></li>
+                                <li><a class="grey-text text-lighten-3" href="#!">RETURNS</a></li>
+                            </ul>
+                        </div>
+                        <div class="col s3">
+                            <h5 class="white-text">MY ACCOUNT</h5>
+                            <ul>
+                                <li><a class="grey-text text-lighten-3" href="#!">MY ACCOUNT</a></li>
+                                <li><a class="grey-text text-lighten-3" href="#!">WISH LIST</a></li>
+                                <li><a class="grey-text text-lighten-3" href="#!">ORDER HISTORY</a></li>
+                                <li><a class="grey-text text-lighten-3" href="#!">BRANDS</a></li>
+                                <li><a class="grey-text text-lighten-3" href="#!">SPECIALS</a></li>
+                                <li><a class="grey-text text-lighten-3" href="#!">NEWSLETTER</a></li>
+                                <li><a class="grey-text text-lighten-3" href="#!">SECURE PAYMENT</a></li>
+                            </ul>
+                        </div>
+                        <div class="col s3">
+                            <h5 class="white-text">I WANT...</h5>
+                            <ul>
+                                <li>Escriba aquí lo que nos quiere enviar.
+                                </li>
+                                <div class="row">
+                                    <form class="col s12">
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <textarea class="materialize-textarea" id="textarea1" placeholder="I want..." style="color: white"></textarea>
+                                            </div>
                                         </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </ul>
-                    </div>
-                    <div class="col s3">
-                        <h5 class="white-text">GET IN TOUCH</h5>
-                        <ul>
-                            <li class="grey-text text-lighten-3">
-                                <b>Phone:</b>666555444
-                            </li>
+                                    </form>
+                                </div>
+                            </ul>
+                        </div>
+                        <div class="col s3">
+                            <h5 class="white-text">GET IN TOUCH</h5>
+                            <ul>
+                                <li class="grey-text text-lighten-3">
+                                    <b>Phone:
+                                    </b>666555444
+                                </li>
                             </a>
-                            </li>
-                            <li class="grey-text text-lighten-3">
-                                <b>Email:</b>rubenconb88@gmail.com
-                            </li>
-                            </a>
-                            </li>
-                            <li class="grey-text text-lighten-3">Your Company LTD.</li>
-                            </a>
-                            </li>
-                            <li class="grey-text text-lighten-3">Street Name, 00000, City Name</li>
-                            </a>
-                            </li>
-                            <li class="grey-text text-lighten-3">LOCATION IN GOOGLE MAPS</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-copyright">
-                <div class="container"><img class="grey-text text-lighten-4 right" src="{{ asset('img/tarjetas.png') }}" style="height: 40px;" /></div>
-            </div>
-        </div>
-    </footer>
-</body>
-
-</html>
-
-<!-- MATERIALIZECSS Compiled and minified JavaScript -->
-<script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
-<script src="{{ asset('js/jquery.longpress.js') }}"></script>
-<script src="{{ asset('js/materialize.js') }}"></script>
-<script src="{{ asset('js/base.js') }}"></script>{% block javascripts %}{% endblock %}</body>
-
-</html>
+                        </li>
+                        <li class="grey-text text-lighten-3">
+                            <b>Email:
+                            </b>rubenconb88@gmail.com
+                        </li>
+                    </a>
+                </li>
+                <li class="grey-text text-lighten-3">Your Company LTD.</li>
+            </a>
+        </li>
+        <li class="grey-text text-lighten-3">Street Name, 00000, City Name</li>
+    </body>
+</html></a></li><li class="grey-text text-lighten-3">LOCATION IN GOOGLE MAPS</li></ul></div></div></div><div class="footer-copyright"><div class="container"><img class="grey-text text-lighten-4 right" src="{{ asset('img/tarjetas.png') }}" style="height: 40px;"/></div></div></div></footer></body> </html> <!-- MATERIALIZECSS Compiled and minified JavaScript --> <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script> <script src="{{ asset('js/jquery.longpress.js') }}"></script> <script src="{{ asset('js/materialize.js') }}"></script> <script src="{{ asset('js/base.js') }}"></script> {% block javascripts %}{% endblock %}</body></html>
