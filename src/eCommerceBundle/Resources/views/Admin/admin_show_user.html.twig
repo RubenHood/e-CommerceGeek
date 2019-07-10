@@ -3,29 +3,36 @@
 {% block body %}
 
     <div class="container productos">
-    <h1>User</h1>
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Username</th>
-                <td>{{ user.username }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ user.roles | join(',') }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="row">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">Detalle</span>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>Id</th>
+                                <td>{{ user.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>Username</th>
+                                <td>{{ user.username }}</td>
+                            </tr>
+                            <tr>
+                                <th>Password</th>
+                                <td>{{ user.password }}</td>
+                            </tr>
+                            <tr>
+                                <th>Roles</th>
+                                <td>{{ user.roles | join(',') }}</td>
+                            </tr>
+                            <tr>
+                                <th>Email</th>
+                                <td>{{ user.email }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
