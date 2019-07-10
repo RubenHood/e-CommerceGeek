@@ -33,7 +33,7 @@ class AdminController extends Controller
     /**
      * @Route("/users/show/{id}", name="admin_show_user")
      */
-    public function showAction(User $userRequest, UserInterface $userLogged = null)
+    public function showAction(User $userRequest)
     {
         // comprobamos si el usuario que realiza la peticion es el mismo que está logueado o es el admin
         return $this->render('@eCommerce/Admin/admin_show_user.html.twig', ['user' => $userRequest]);

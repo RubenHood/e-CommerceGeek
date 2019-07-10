@@ -22,7 +22,7 @@ security:
         main:
             pattern: ^/
             anonymous: ~
-            acces_denied_url: /
+            access_denied_url: /
             provider: our_db_provider
             guard:
                 authenticators:
