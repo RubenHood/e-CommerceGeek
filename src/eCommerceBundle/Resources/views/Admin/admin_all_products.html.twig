@@ -1,5 +1,5 @@
 {% extends "base.html.twig" %}
-{% block title %}Bienvenido a Geek
+{% block title %}Productos
 {% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/all_products.css') }}"/>
@@ -24,9 +24,7 @@
                         <tbody>
                             {% for product in products %}
                                 <tr>
-                                    <td>
-                                        {{ product.name }}
-                                    </td>
+                                    <td>{{ product.name }}</td>
                                     <td>{{ product.description }}</td>
                                     <td>{{ product.price}}</td>
                                     <td>{{ product.img}}</td>
@@ -34,17 +32,17 @@
                                     <td>
                                         <ul style="display: flex;">
                                             <li>
-                                                <a class="efecto" href="{{ path('admin_show_user', { 'id': product.id }) }}">
+                                                <a class="efecto" href="{{ path('admin_show_products', { 'id': product.id }) }}">
                                                     <i class="material-icons">zoom_in</i>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="efecto" href="{{ path('admin_edit_user', { 'id': product.id }) }}">
+                                                <a class="efecto" href="{{ path('admin_edit_products', { 'id': product.id }) }}">
                                                     <i class="material-icons">edit</i>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="efecto" href="{{ path('admin_delete_user', { 'id': product.id }) }}">
+                                                <a class="efecto" href="{{ path('admin_delete_products', { 'id': product.id }) }}">
                                                     <i class="material-icons">delete_forever</i>
                                                 </a>
                                             </li>

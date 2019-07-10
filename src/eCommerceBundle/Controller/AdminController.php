@@ -10,6 +10,7 @@ use eCommerceBundle\Form\UserType;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use eCommerceBundle\Entity\Product;
+use eCommerceBundle\Form\ProductType;
 
 /**
  * Admin controller.
@@ -91,5 +92,50 @@ class AdminController extends Controller
         $products = $repository->findAll();
 
         return $this->render("@eCommerce/Admin/admin_all_products.html.twig", ["products" => $products]);
+    }
+
+    /**
+     * @Route("/products/show/{id}", name="admin_show_products")
+     */
+    public function showProductAction(Product $product)
+    {
+        // comprobamos si el usuario que realiza la peticion es el mismo que está logueado o es el admin
+        return $this->render('@eCommerce/Admin/admin_show_product.html.twig', ['product' => $product]);
+    }
+
+    /**
+     * @Route("/products/edit/{id}", name="admin_edit_products")
+     */
+    public function editProductAction(Request $request, Product $product)
+    {
+        $editForm = $this->createForm(ProductType::class, $product);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($product);
+            $em->flush();
+
+            return $this->redirectToRoute('adminAllProduct');
+        }
+
+        return $this->render('@eCommerce/Admin/admin_edit_user.html.twig', array(
+            'user' => $product,
+            'edit_form' => $editForm->createView()
+        ));
+    }
+
+    /**
+     * @Route("/products/delete/{id}", name="admin_delete_products")
+     * 
+     */
+    public function deleteProductAction(Product $product)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($product);
+        $em->flush();
+
+        return $this->redirectToRoute('user_index');
     }
 }
