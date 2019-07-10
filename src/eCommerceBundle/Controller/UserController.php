@@ -129,7 +129,7 @@ class UserController extends Controller
                 'edit_form' => $editForm->createView()
             ));
         } else {
-            throw new AccessDeniedException('Solo puede editar su usuario');
+            throw new AccessDeniedException('Solo puede editar su usuario.');
         }
     }
 }

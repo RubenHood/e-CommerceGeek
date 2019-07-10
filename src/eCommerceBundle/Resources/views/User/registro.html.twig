@@ -10,17 +10,15 @@
 
     <div class="container productos">
         <div class="row">
-            <form action="{{ path('login') }}" method="post">
-                <div class="card color">
-                    <div class="card-content">
-                        <span class="card-title">Registro</span>
-                        {{ form_start(form) }}
-                        {{ form_widget(form) }}
-                        <button class="btn color" type="submit">Registrar</button>
-                        {{ form_end(form) }}
-                    </div>
+            <div class="card color">
+                <div class="card-content">
+                    <span class="card-title">Registro</span>
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <button class="btn color" type="submit">Registrar</button>
+                    {{ form_end(form) }}
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 
