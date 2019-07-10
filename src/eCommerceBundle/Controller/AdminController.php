@@ -120,7 +120,7 @@ class AdminController extends Controller
             return $this->redirectToRoute('adminAllProduct');
         }
 
-        return $this->render('@eCommerce/Admin/admin_edit_user.html.twig', array(
+        return $this->render('@eCommerce/Admin/admin_edit_product.html.twig', array(
             'user' => $product,
             'edit_form' => $editForm->createView()
         ));
@@ -136,6 +136,6 @@ class AdminController extends Controller
         $em->remove($product);
         $em->flush();
 
-        return $this->redirectToRoute('user_index');
+        return $this->redirectToRoute('adminAllProduct');
     }
 }

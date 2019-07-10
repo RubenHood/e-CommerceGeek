@@ -1,0 +1,43 @@
+@font-face {
+    font-family: ubuntu;
+    src: url(../fonts/ubuntu.ttf);
+}
+
+@font-face {
+    font-family: lionello;
+    src: url(../fonts/lionello.ttf);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+
+/* div que contiene los productos */
+
+.productos {
+    min-height: 90vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.productos .row {
+    text-align: center;
+    margin: 0;
+    width: 30%;
+}
+
+.productos button {
+    background-color: rgb(240, 69, 12);
+    color: white;
+}
+
+form select {
+    display: block;
+}
