@@ -1,0 +1,43 @@
+version: '3.4'
+services:
+  geekshubs_bd:
+    image: geekshubs_bd
+    container_name: ${CONTAINER_REGISTRY_BASE}_bd
+    build:
+      context: bd
+      target: geekshubs_bd
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+  geekshubs_php7:
+    image: ${CONTAINER_REGISTRY_BASE}/php7-fpm
+    container_name: geekshubs_php7
+    build:
+      target: geekshubs_php-fpm
+      context: php7-fpm
+      args:
+        TIMEZONE: ${TIMEZONE}
+
+    restart: always
+    volumes:
+      - ${DIRECTORY_WEB}:/var/www/html
+    # command: bash -c "cd  /var/www/html && composer start"
+    # ports:
+    #   - "5000:5000"
+  geekshubs_apache:
+    image: ${CONTAINER_REGISTRY_BASE}/apache_php7
+    container_name: geekshubs_apache
+    build:
+      context: apache
+      target: geekshubs_apache
+    links:
+      - geekshubs_php7
+    restart: 'always'
+    volumes:
+      - ${DIRECTORY_WEB}:/var/www/html
+    ports:
+      - "8000:80"
+    # command: sh -s "chown -R www-data:www-data /var/www/html"
+    command: sh -s "php vendor/bin/phinx migrate -e development"

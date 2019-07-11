@@ -32,6 +32,7 @@ class Cesta
      * @var int
      *
      * @ORM\Column(name="idProduct", type="integer")
+     * 
      */
     private $idProduct;
 
@@ -125,4 +126,3 @@ class Cesta
         return $this->cantidad;
     }
 }
-
