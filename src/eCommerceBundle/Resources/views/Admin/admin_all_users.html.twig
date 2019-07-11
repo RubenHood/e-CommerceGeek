@@ -30,24 +30,34 @@
                                     <td>{{ user.roles | join(',')}}</td>
                                     <td>
                                         <ul style="display: flex;">
-                                            <li class="efecto">
-                                                <a href="{{ path('admin_show_user', { 'id': user.id }) }}">
+                                            <li>
+                                                <a class="efecto" href="{{ path('admin_show_user', { 'id': user.id }) }}">
                                                     <i class="material-icons">zoom_in</i>
                                                 </a>
                                             </li>
-                                            <li class="efecto">
-                                                <a href="{{ path('admin_edit_user', { 'id': user.id }) }}">
+                                            <li>
+                                                <a class="efecto" href="{{ path('admin_edit_user', { 'id': user.id }) }}">
                                                     <i class="material-icons">edit</i>
                                                 </a>
                                             </li>
-                                            <li class="efecto">
-                                                <a href="{{ path('admin_delete_user', { 'id': user.id }) }}">
+                                            <li>
+                                                <a class="efecto modal-trigger" href="#modalDelete{{user.id}}">
                                                     <i class="material-icons">delete_forever</i>
                                                 </a>
                                             </li>
                                         </ul>
                                     </td>
                                 </tr>
+                                <div class="modal" id="modalDelete{{user.id}}">
+                                    <div class="modal-content">
+                                        <h4>Atención</h4>
+                                        <p>Está seguro de eliminar el usuario {{user.username}} ?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="modal-close waves-effect waves-red btn-flat" href="#">Cancelar</a>
+                                        <a class="modal-close waves-effect waves-green btn-flat" href="#" onclick="redirectUSer('{{user.id}}')">Aceptar</a>
+                                    </div>
+                                </div>
                             {% endfor %}
                         </tbody>
                     </table>
@@ -56,3 +66,4 @@
         </div>
     </div>
 {% endblock %}
+{% block javascripts %}<script src="{{ asset('js/all_products.js') }}">{% endblock %}

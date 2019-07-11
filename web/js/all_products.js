@@ -3,7 +3,12 @@ $(document).ready(function() {
 });
 
 
-function redirect(id) {
+function redirectProducts(id) {
 
     window.location.href = "/admin/products/delete/" + id;
+}
+
+function redirectUsers(id) {
+
+    window.location.href = "/admin/users/delete/" + id;
 }
