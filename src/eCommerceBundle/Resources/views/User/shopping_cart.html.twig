@@ -14,6 +14,7 @@
                     <table>
                         <thead>
                             <tr>
+                                <th></th>
                                 <th>Artículo</th>
                                 <th>Precio</th>
                                 <th>Unidades</th>
@@ -21,16 +22,30 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% set total = 0 %}
+
                             {% for product in products %}
 
-                            
+                                {% set total = total + (product.price * product.cantidad) %}
                                 <tr>
-                                    <td>{{ product.img }}{{ product.name }}</td>
+                                    <td><img alt="prueba" src="/img/{{product.img}}" style="width: 60px"/></td>
+                                    <td>{{ product.name }}</td>
                                     <td>{{ product.price}}</td>
                                     <td>{{ product.cantidad}}</td>
-                                    <td>{{ product.img}}</td>
+                                    <td>{{product.price * product.cantidad}}</td>
                                 </tr>
                             {% endfor %}
+                            <tr>
+                                <td colspan="5">
+                                    <div class="divider"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td  style="text-align: center;"colspan="2">TOTAL {{total}}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
