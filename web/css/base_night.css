@@ -98,6 +98,7 @@ body {
 /* footer */
 
 .footer {
+    display: none;
     padding: 0;
     background-image: url(../img/ciudad.png);
     background-size: contain;
@@ -107,6 +108,10 @@ body {
 .footer>div {
     background-color: black;
     opacity: 0.8;
+}
+
+footer a:hover {
+    opacity: 0.5;
 }
 
 
@@ -133,10 +138,6 @@ body {
 }
 
 .social-media img:hover {
-    opacity: 0.5;
-}
-
-footer a:hover {
     opacity: 0.5;
 }
 

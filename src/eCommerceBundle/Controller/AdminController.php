@@ -138,4 +138,33 @@ class AdminController extends Controller
 
         return $this->redirectToRoute('adminAllProduct');
     }
+
+    /**
+     * @Route("/products/new", name="admin_new_products")
+     */
+    public function nuevoEquipo(Request $request)
+    {
+        //instanciamos un objeto equipo
+        $product = new Product();
+
+        //creamos el form a partir de la entidad y la clase EquipoType de Forms
+        $form = $this->createForm(ProductType::class, $product);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $product = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($product);
+            $em->flush();
+
+            return $this->redirectToRoute('adminAllProduct');
+        }
+
+        return $this->render('@eCommerce/Admin/admin_new_product.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
 }
