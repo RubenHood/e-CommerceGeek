@@ -42,13 +42,23 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="efecto" href="{{ path('admin_delete_products', { 'id': product.id }) }}">
+                                                <a class="efecto modal-trigger" href="#modalDelete{{product.id}}">
                                                     <i class="material-icons">delete_forever</i>
                                                 </a>
                                             </li>
                                         </ul>
                                     </td>
                                 </tr>
+                                <div class="modal" id="modalDelete{{product.id}}">
+                                    <div class="modal-content">
+                                        <h4>Atención</h4>
+                                        <p>Está seguro de eliminar el producto {{product.name}} ?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="modal-close waves-effect waves-red btn-flat" href="#">Cancelar</a>
+                                        <a class="modal-close waves-effect waves-green btn-flat" href="#" onclick="redirect('{{product.id}}')">Aceptar</a>
+                                    </div>
+                                </div>
                             {% endfor %}
                         </tbody>
                     </table>
@@ -61,6 +71,5 @@
             <i class="large material-icons">add</i>
         </a>
     </div>
-
 {% endblock %}
-{% block javascripts %}{% endblock %}
+{% block javascripts %}<script src="{{ asset('js/all_products.js') }}">{% endblock %}
