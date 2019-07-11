@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+{% block title %}Productos
+{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/all_products.css') }}"/>
+{% endblock %}
+{% block body %}
+
+    <div class="container productos">
+        <div class="row">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">Carrito</span>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Artículo</th>
+                                <th>Precio</th>
+                                <th>Unidades</th>
+                                <th>total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for product in products %}
+
+                            
+                                <tr>
+                                    <td>{{ product.img }}{{ product.name }}</td>
+                                    <td>{{ product.price}}</td>
+                                    <td>{{ product.cantidad}}</td>
+                                    <td>{{ product.img}}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}<script src="{{ asset('js/cart.js') }}">{% endblock %}

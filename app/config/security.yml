@@ -3,6 +3,7 @@
 security:
     encoders:
         eCommerceBundle\Entity\User: bcrypt
+    access_denied_url: /
 
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
@@ -22,7 +23,6 @@ security:
         main:
             pattern: ^/
             anonymous: ~
-            access_denied_url: /
             provider: our_db_provider
             guard:
                 authenticators:

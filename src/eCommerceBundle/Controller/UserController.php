@@ -12,6 +12,7 @@ use eCommerceBundle\Form\UserType;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
+use eCommerceBundle\Entity\Cesta;
 
 /**
  * @Route("/")
@@ -131,5 +132,24 @@ class UserController extends Controller
         } else {
             throw new AccessDeniedException('Solo puede editar su usuario.');
         }
+    }
+
+    /**
+     * @Route("/cart/logged/show/{id}", name="show_car")
+     */
+    public function showCartAction($id)
+    {
+        //recuperamos el entiti manager
+        $em = $this->getDoctrine()->getManager();
+
+        $query = $em->createQuery(
+            'SELECT cesta.cantidad, product.name, product.price, product.img 
+            FROM eCommerceBundle:Cesta cesta INNER JOIN eCommerceBundle:Product product where 
+            cesta.idProduct = product.id and cesta.idUser = :id'
+        )->setParameter('id', $id);
+
+        $products = $query->getResult();
+
+        return $this->render("@eCommerce/User/shopping_cart.html.twig", ["products" => $products]);
     }
 }

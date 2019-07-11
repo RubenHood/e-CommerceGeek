@@ -73,7 +73,7 @@
             <div class="col s6">
                 <div class="card">
                     <div class="card-image">
-                        <img src="../img/{{product.img}}">
+                        <img src="img/{{product.img}}">
                     </div>
                 </div>
             </div>
@@ -108,11 +108,13 @@
                                 <option value="8">8</option>
                             </select>
                         </div>
-                        <div class="input-field">
-                            <a class="waves-effect waves-orange btn color">
-                                <i class="material-icons right">add_shopping_cart</i>AL
-                                                                                            CARRITO</a>
-                        </div>
+                        {% if app.user %}
+                            <div class="input-field">
+                                <a class="waves-effect waves-orange btn color">
+                                    <i class="material-icons right">add_shopping_cart</i>COMPRAR
+                                </a>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>

@@ -93,12 +93,13 @@
                             <a class="color" href="{{ path('newUser') }}">Register</a>
                         </li>
                     {% endif %}
-
-                    <li>
-                        <a href="#">
-                            <i alt="Hazte Premium" class="material-icons color">add_shopping_cart</i>
-                        </a>
-                    </li>
+                    {% if app.user %}
+                        <li>
+                            <a href="{{ path('show_car', { 'id': app.user.id }) }}">
+                                <i alt="Hazte Premium" class="material-icons color">add_shopping_cart</i>
+                            </a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
