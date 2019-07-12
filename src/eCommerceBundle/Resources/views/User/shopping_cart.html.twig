@@ -2,7 +2,7 @@
 {% block title %}Productos
 {% endblock %}
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/all_products.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/cart.css') }}"/>
 {% endblock %}
 {% block body %}
 
@@ -19,6 +19,7 @@
                                 <th>Precio</th>
                                 <th>Unidades</th>
                                 <th>total</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -31,9 +32,34 @@
                                     <td><img alt="prueba" src="/img/{{product.img}}" style="width: 60px"/></td>
                                     <td>{{ product.name }}</td>
                                     <td>{{ product.price}}</td>
-                                    <td>{{ product.cantidad}}</td>
+                                    <td style="display: flex; margin-top: 20px;">
+                                        <a class="efecto" style="cursor: pointer;" href="{{ path('add_quantity_products', { 'id': product.id }) }}">
+                                            <i class="material-icons">expand_less</i>
+                                        </a>
+                                        {{ product.cantidad}}
+                                        <a class="efecto" style="cursor: pointer;" href="{{ path('less_quantity_products', { 'id': product.id }) }}">
+                                            <i class="material-icons">expand_more</i>
+                                        </a>
+                                    </td>
                                     <td>{{product.price * product.cantidad}}</td>
+                                    <td>
+                                        <a class="efecto modal-trigger" href="#modalDelete{{product.id}}">
+                                            <i class="material-icons">delete_forever</i>
+                                        </a>
+                                    </td>
                                 </tr>
+                                <div class="modal" id="modalDelete{{product.id}}">
+                                    <div class="modal-content">
+                                        <h4>Atención</h4>
+                                        <p>Está seguro de eliminar el producto
+                                            {{product.name}}
+                                            de la cesta?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="modal-close waves-effect waves-red btn-flat" href="#">Cancelar</a>
+                                        <a class="modal-close waves-effect waves-green btn-flat" href="#" onclick="redirectEliminar('{{product.id}}')">Aceptar</a>
+                                    </div>
+                                </div>
                             {% endfor %}
                             <tr>
                                 <td colspan="5">
@@ -42,9 +68,9 @@
                             </tr>
                             <tr>
                                 <td></td>
-                                <td></td>
-                                <td></td>
-                                <td  style="text-align: center;" colspan="2">TOTAL {{total}}</td>
+                                <td colspan="2" style="text-align: center;"><button class="btn colorButton" type="submit" onclick="vaciar()">Vaciar</button></td>
+                                <td colspan="2" style="text-align: center;">TOTAL
+                                    {{total}}</td>
                             </tr>
                         </tbody>
                     </table>

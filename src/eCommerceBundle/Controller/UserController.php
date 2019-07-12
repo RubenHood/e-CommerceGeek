@@ -143,7 +143,7 @@ class UserController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $query = $em->createQuery(
-            'SELECT cesta.cantidad, product.name, product.price, product.img 
+            'SELECT cesta.id, cesta.cantidad, product.name, product.price, product.img 
             FROM eCommerceBundle:Cesta cesta INNER JOIN eCommerceBundle:Product product where 
             cesta.idProduct = product.id and cesta.idUser = :id'
         )->setParameter('id', $id);
@@ -174,5 +174,98 @@ class UserController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('showAll');
+    }
+
+    /**
+     * @Route("/cart/logged/delete/{id}", name="admin_delete_products")
+     * 
+     */
+    public function deleteProductAction(Cesta $cesta, UserInterface $userLogged)
+    {
+
+        //recuperamos el entiti manager
+        $em = $this->getDoctrine()->getManager();
+
+        // //obtenemos la referencia al repositorio
+        $repository = $em->getRepository(Product::class);
+
+        $repository = $this->getDoctrine()->getManager();
+        $repository->remove($cesta);
+        $repository->flush();
+
+        return $this->redirectToRoute('show_car', ['id' => $userLogged->getId()]);
+    }
+
+    /**
+     * @Route("/cart/logged/cant/+/{id}", name="add_quantity_products")
+     * 
+     */
+    public function addQuantityAction(Cesta $id, UserInterface $userLogged)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository(Cesta::class);
+
+        $cart = new Cesta();
+
+        $cart = $repository->findOneBy(array('idProduct' => $id, 'idUser' => $userLogged->getId()));
+
+        $cart->setCantidad($cart->getCantidad() + 1);
+        $em->persist($cart);
+        $em->flush();
+
+        return $this->redirectToRoute('show_car', ['id' => $userLogged->getId()]);
+    }
+
+    /**
+     * @Route("/cart/logged/cant/-/{id}", name="less_quantity_products")
+     * 
+     */
+    public function lessQuantityAction(Cesta $id, UserInterface $userLogged)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository(Cesta::class);
+
+        $cart = new Cesta();
+
+        $cart = $repository->findOneBy(array('idProduct' => $id, 'idUser' => $userLogged->getId()));
+
+        $cart->setCantidad($cart->getCantidad() - 1);
+        $em->persist($cart);
+        $em->flush();
+
+        if ($cart->getCantidad() < 1) {
+            $repository = $this->getDoctrine()->getManager();
+            $repository->remove($cart);
+            $repository->flush();
+        }
+
+        return $this->redirectToRoute('show_car', ['id' => $userLogged->getId()]);
+    }
+
+    /**
+     * @Route("/cart/logged/deleteall", name="delete_all_cart")
+     * 
+     */
+    public function deleteAllCart(UserInterface $userLogged)
+    {
+        //recuperamos el entiti manager
+        $em = $this->getDoctrine()->getManager();
+
+        //obtenemos la referencia al repositorio
+        $repository = $em->getRepository(Cesta::class);
+
+        $carts = $repository->findBy(
+            ['idUser' => $userLogged->getId()]
+        );
+
+        $em = $this->getDoctrine()->getManager();
+        foreach ($carts as $cart) {
+            $em->remove($cart);
+        }
+        $em->flush();
+
+        return $this->redirectToRoute('show_car', ['id' => $userLogged->getId()]);
     }
 }
