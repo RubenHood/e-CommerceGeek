@@ -152,4 +152,27 @@ class UserController extends Controller
 
         return $this->render("@eCommerce/User/shopping_cart.html.twig", ["products" => $products]);
     }
+
+    /**
+     * @Route("/cart/logged/add/{id}/{cant}", name="add_product_car")
+     */
+    public function addProductAction(Product $product, $cant, UserInterface $userLogged)
+    {
+        //recuperamos el entiti manager
+        $em = $this->getDoctrine()->getManager();
+
+        $em->getRepository(Cesta::class);
+
+        //creamos la entidad
+        $cesta = new Cesta();
+        $cesta->setIdUser($userLogged->getId());
+        $cesta->setIdProduct($product->getId());
+        $cesta->setCantidad($cant);
+
+        //presistimos la entidad
+        $em->persist($cesta);
+        $em->flush();
+
+        return $this->redirectToRoute('showAll');
+    }
 }

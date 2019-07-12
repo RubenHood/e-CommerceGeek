@@ -101,6 +101,7 @@
                                 <option disabled selected value="">Cantidad</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
+                                <option value="3">3</option>
                                 <option value="4">4</option>
                                 <option value="5">5</option>
                                 <option value="6">6</option>
@@ -110,7 +111,7 @@
                         </div>
                         {% if app.user %}
                             <div class="input-field">
-                                <a class="waves-effect waves-orange btn color">
+                                <a class="waves-effect waves-orange btn colorButton" onclick="anyadir('{{product.id}}')">
                                     <i class="material-icons right">add_shopping_cart</i>COMPRAR
                                 </a>
                             </div>
@@ -121,4 +122,4 @@
         </div>
     </div>
 {% endblock %}
-{% block javascripts %}{% endblock %}
+{% block javascripts %}<script src="{{ asset('js/one.js') }}">{% endblock %}
